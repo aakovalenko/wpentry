@@ -1,3 +1,4 @@
+<hr>
 <div>
     <?= date('Y') ?>
 </div>

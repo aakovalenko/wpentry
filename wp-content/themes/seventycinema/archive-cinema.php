@@ -13,7 +13,7 @@ foreach ($terms as $term){
 }
 echo $output;
 
-$args = array('post_type' => 'ciname', 'post_per_page' => 10 );
+$args = array('post_type' => 'cinema', 'post_per_page' => 10 );
 $loop = new WP_QUERY( $args );
 while ($loop->have_posts() ) : $loop->the_post();
 ?>
