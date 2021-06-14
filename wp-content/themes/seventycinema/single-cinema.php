@@ -13,10 +13,25 @@ get_header();
     </h1>
 
 </div>
-<?php
+<div>
+    <?php
 
-the_content();
-?>
+    $terms = get_terms( $args );
+
+    foreach( $terms as $term ){
+        print_r( $term);
+    }
+
+    the_content();
+    $posttags = get_the_terms();
+    if( $posttags ){
+        foreach( $posttags as $tag ){
+            echo $tag->name . ' ';
+        }
+    }
+    ?>
+</div>
+
 
 <?php
 
