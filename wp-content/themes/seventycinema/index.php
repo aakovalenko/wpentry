@@ -5,7 +5,8 @@ get_header();
 
 ?>
 
-<div class="container mx-auto">
+
+<div class="container mx-auto mt-1">
     <?php
 
     if ( have_posts() ) :
