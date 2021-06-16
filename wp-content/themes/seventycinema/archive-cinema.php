@@ -16,14 +16,7 @@ get_header();
     $args = array(
         'post_type' => 'cinema',
         'orderby' => 'meta_year',
-        'post_per_page' => 5,
-//    'tax_query' => array(
-//            array(
-//                'taxonomy' => 'cinema_year',
-//    'field'    => 'slug',
-//                'term' => 1991,
-//            )
-//    )
+        'paged' => get_query_var('paged') ?: 1
     );
     $loop = new WP_QUERY( $args);
     while ($loop->have_posts() ) : $loop->the_post();
@@ -36,7 +29,13 @@ get_header();
         the_excerpt();
 
     endwhile;
+echo  "<hr>";
+    posts_nav_link(); // пагинация - echo тут не надо
+
+    wp_reset_query(); // сброс $wp_query
+    echo  "<hr>";
     ?>
+
 </div>
 <hr>
 <?php
