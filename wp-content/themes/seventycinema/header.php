@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar mymain fixed-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?= home_url() ?>">CINEMA</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,12 +24,22 @@
 <!--                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
 <!--            </div>-->
 <!--        </div>-->
-        <?= wp_nav_menu( [
-                'container_class' => 'collapse navbar-collapse',
+
+        <?php
+        function show_when_menu_is_empty() {
+            echo 'Please, create Menu';
+        }
+
+        wp_nav_menu( [
+                'menu' => 'main',
+            'theme_location' => 'header-menu',
+                'fallback_cb' => 'show_when_menu_is_empty',
+                'container' => 'div',
             'container_id' =>  'navbarNavAltMarkup',
-            'theme_location' => 'header_menu',
+                'container_class' => 'collapse navbar-collapse',
+            'menu_id' => 'headerUl',
             'menu_class' => 'navbar-nav',
-            'link_class' => 'nav-link'
+            'link_class' => 'nav-link',
         ] ); ?>
 
     </div>

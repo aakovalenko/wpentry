@@ -1,10 +1,8 @@
 <?php
 get_header();
 ?>
-<div>
-    SINGLE PAGE FOR  CINEMA
-</div>
-<div>
+
+<div class="container">
 
     <h1>
         <?php
@@ -12,27 +10,15 @@ get_header();
         ?>
     </h1>
 
-</div>
+
 <div>
     <?php
 
-    $terms = get_terms( $args );
-
-    foreach( $terms as $term ){
-        print_r( $term);
-    }
-
-    the_content();
-    $posttags = get_the_terms();
-    if( $posttags ){
-        foreach( $posttags as $tag ){
-            echo $tag->name . ' ';
-        }
-    }
+        the_content();
     ?>
 </div>
 
-
+</div>
 <?php
 
 get_footer();

@@ -1,6 +1,10 @@
 /*
 Theme Name: Seventy Cinema
 */
+
 body {
     background-color: beige;
+}
+.mymain {
+    position: relative;
 }

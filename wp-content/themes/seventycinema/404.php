@@ -1,7 +1,8 @@
-/**
-* The template for displaying 404 pages (Not Found)
-*/
+
 <?php
+/**
+ * The template for displaying 404 pages (Not Found)
+ */
 get_header();
 ?>
 <div id="primary" class="content-area">
