@@ -29,6 +29,12 @@
         function show_when_menu_is_empty() {
             echo 'Please, create Menu';
         }
+        function modify_menu_link( $atts ) {
+            $atts['class'] = ! empty( $atts['class'] ) ? $atts['class'] . ' nav-link' : 'nav-link';
+
+            return $atts;
+        }
+        add_filter( 'nav_menu_link_attributes', 'modify_menu_link', 10, 1 );
 
         wp_nav_menu( [
                 'menu' => 'main',
@@ -40,7 +46,9 @@
             'menu_id' => 'headerUl',
             'menu_class' => 'navbar-nav',
             'link_class' => 'nav-link',
-        ] ); ?>
+        ] );
+
+        ?>
 
     </div>
 </nav>
