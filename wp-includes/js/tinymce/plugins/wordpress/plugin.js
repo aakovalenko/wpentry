@@ -498,7 +498,7 @@ tinymce.PluginManager.add( 'wordpress', function( editor ) {
 
 	editor.on( 'init', function() {
 		var env = tinymce.Env,
-			bodyClass = ['mceContentBody'], // Back-compat for themes that use this in editor-style.css...
+			bodyClass = ['mceContentBody'], // Back-compat for themes that use this in editor-main.css...
 			doc = editor.getDoc(),
 			dom = editor.dom;
 

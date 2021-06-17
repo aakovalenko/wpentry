@@ -50,8 +50,8 @@ $wp_file_descriptions = array(
 	'header-embed.php'      => __( 'Embed Header Template' ),
 	'footer-embed.php'      => __( 'Embed Footer Template' ),
 	// Stylesheets.
-	'style.css'             => __( 'Stylesheet' ),
-	'editor-style.css'      => __( 'Visual Editor Stylesheet' ),
+	'main.css'             => __( 'Stylesheet' ),
+	'editor-main.css'      => __( 'Visual Editor Stylesheet' ),
 	'editor-style-rtl.css'  => __( 'Visual Editor RTL Stylesheet' ),
 	'rtl.css'               => __( 'RTL Stylesheet' ),
 	// Other.
@@ -451,7 +451,7 @@ function wp_edit_theme_plugin_file( $args ) {
 					break;
 				case 'css':
 					$style_files                = $theme->get_files( 'css', -1 );
-					$allowed_files['style.css'] = $style_files['style.css'];
+					$allowed_files['main.css'] = $style_files['main.css'];
 					$allowed_files              = array_merge( $allowed_files, $style_files );
 					break;
 				default:

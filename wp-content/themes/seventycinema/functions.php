@@ -26,9 +26,13 @@ function wpt_register_js() {
     wp_enqueue_script('jquery.bootstrap.min');
 }
 add_action( 'init', 'wpt_register_js' );
+
 function wpt_register_css() {
+    wp_register_style( 'main', get_template_directory_uri() . '/assets/css/main.css' );
     wp_register_style( 'bootstrap.min', get_template_directory_uri() . '/assets/css/bootstrap.min.css' );
+    wp_enqueue_style( 'main' );
     wp_enqueue_style( 'bootstrap.min' );
+
 }
 add_action( 'wp_enqueue_scripts', 'wpt_register_css' );
 
@@ -101,6 +105,7 @@ function seventycinema_widgets_init() {
 }
 add_action( 'widgets_init', 'seventycinema_widgets_init' );
 
+/* PAGINATION */
 add_action( 'pre_get_posts', 'cinema_pagesize', 1 );
 
 function cinema_pagesize( $query ) {

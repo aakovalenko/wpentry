@@ -528,22 +528,22 @@ class Theme_Upgrader extends WP_Upgrader {
 			return $source;
 		}
 
-		// A proper archive should have a style.css file in the single subdirectory.
-		if ( ! file_exists( $working_directory . 'style.css' ) ) {
+		// A proper archive should have a main.css file in the single subdirectory.
+		if ( ! file_exists( $working_directory . 'main.css' ) ) {
 			return new WP_Error(
 				'incompatible_archive_theme_no_style',
 				$this->strings['incompatible_archive'],
 				sprintf(
-					/* translators: %s: style.css */
+					/* translators: %s: main.css */
 					__( 'The theme is missing the %s stylesheet.' ),
-					'<code>style.css</code>'
+					'<code>main.css</code>'
 				)
 			);
 		}
 
 		// All these headers are needed on Theme_Installer_Skin::do_overwrite().
 		$info = get_file_data(
-			$working_directory . 'style.css',
+			$working_directory . 'main.css',
 			array(
 				'Name'        => 'Theme Name',
 				'Version'     => 'Version',
@@ -559,9 +559,9 @@ class Theme_Upgrader extends WP_Upgrader {
 				'incompatible_archive_theme_no_name',
 				$this->strings['incompatible_archive'],
 				sprintf(
-					/* translators: %s: style.css */
+					/* translators: %s: main.css */
 					__( 'The %s stylesheet doesn&#8217;t contain a valid theme header.' ),
-					'<code>style.css</code>'
+					'<code>main.css</code>'
 				)
 			);
 		}

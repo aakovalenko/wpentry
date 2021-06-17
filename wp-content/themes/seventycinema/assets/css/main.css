@@ -1,0 +1,12 @@
+body {
+    background-color: beige!important;
+}
+.mymain {
+    position: relative;
+}
+aside {
+    position: absolute;
+    left: 0;
+    top: 56px;
+    background: tomato;
+}

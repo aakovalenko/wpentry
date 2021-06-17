@@ -85,7 +85,7 @@ foreach ( $file_types as $type ) {
 			break;
 		case 'css':
 			$style_files                = $theme->get_files( 'css', -1 );
-			$allowed_files['style.css'] = $style_files['style.css'];
+			$allowed_files['main.css'] = $style_files['main.css'];
 			$allowed_files             += $style_files;
 			break;
 		default:
@@ -94,17 +94,17 @@ foreach ( $file_types as $type ) {
 	}
 }
 
-// Move functions.php and style.css to the top.
+// Move functions.php and main.css to the top.
 if ( isset( $allowed_files['functions.php'] ) ) {
 	$allowed_files = array( 'functions.php' => $allowed_files['functions.php'] ) + $allowed_files;
 }
-if ( isset( $allowed_files['style.css'] ) ) {
-	$allowed_files = array( 'style.css' => $allowed_files['style.css'] ) + $allowed_files;
+if ( isset( $allowed_files['main.css'] ) ) {
+	$allowed_files = array( 'main.css' => $allowed_files['main.css'] ) + $allowed_files;
 }
 
 if ( empty( $file ) ) {
-	$relative_file = 'style.css';
-	$file          = $allowed_files['style.css'];
+	$relative_file = 'main.css';
+	$file          = $allowed_files['main.css'];
 } else {
 	$relative_file = wp_unslash( $file );
 	$file          = $theme->get_stylesheet_directory() . '/' . $relative_file;

@@ -232,7 +232,7 @@ function get_stylesheet_directory_uri() {
 /**
  * Retrieves stylesheet URI for current theme.
  *
- * The stylesheet file name is 'style.css' which is appended to the stylesheet directory URI path.
+ * The stylesheet file name is 'main.css' which is appended to the stylesheet directory URI path.
  * See get_stylesheet_directory_uri().
  *
  * @since 1.5.0
@@ -241,7 +241,7 @@ function get_stylesheet_directory_uri() {
  */
 function get_stylesheet_uri() {
 	$stylesheet_dir_uri = get_stylesheet_directory_uri();
-	$stylesheet_uri     = $stylesheet_dir_uri . '/style.css';
+	$stylesheet_uri     = $stylesheet_dir_uri . '/main.css';
 	/**
 	 * Filters the URI of the current theme stylesheet.
 	 *
@@ -483,7 +483,7 @@ function search_theme_directories( $force = false ) {
 					continue;
 				}
 				$found_themes[ $theme_dir ] = array(
-					'theme_file' => $theme_dir . '/style.css',
+					'theme_file' => $theme_dir . '/main.css',
 					'theme_root' => $relative_theme_roots[ $theme_root ], // Convert relative to absolute.
 				);
 			}
@@ -509,11 +509,11 @@ function search_theme_directories( $force = false ) {
 			if ( ! is_dir( $theme_root . '/' . $dir ) || '.' === $dir[0] || 'CVS' === $dir ) {
 				continue;
 			}
-			if ( file_exists( $theme_root . '/' . $dir . '/style.css' ) ) {
+			if ( file_exists( $theme_root . '/' . $dir . '/main.css' ) ) {
 				// wp-content/themes/a-single-theme
 				// wp-content/themes is $theme_root, a-single-theme is $dir.
 				$found_themes[ $dir ] = array(
-					'theme_file' => $dir . '/style.css',
+					'theme_file' => $dir . '/main.css',
 					'theme_root' => $theme_root,
 				);
 			} else {
@@ -529,20 +529,20 @@ function search_theme_directories( $force = false ) {
 					if ( ! is_dir( $theme_root . '/' . $dir . '/' . $sub_dir ) || '.' === $dir[0] || 'CVS' === $dir ) {
 						continue;
 					}
-					if ( ! file_exists( $theme_root . '/' . $dir . '/' . $sub_dir . '/style.css' ) ) {
+					if ( ! file_exists( $theme_root . '/' . $dir . '/' . $sub_dir . '/main.css' ) ) {
 						continue;
 					}
 					$found_themes[ $dir . '/' . $sub_dir ] = array(
-						'theme_file' => $dir . '/' . $sub_dir . '/style.css',
+						'theme_file' => $dir . '/' . $sub_dir . '/main.css',
 						'theme_root' => $theme_root,
 					);
 					$found_theme                           = true;
 				}
-				// Never mind the above, it's just a theme missing a style.css.
+				// Never mind the above, it's just a theme missing a main.css.
 				// Return it; WP_Theme will catch the error.
 				if ( ! $found_theme ) {
 					$found_themes[ $dir ] = array(
-						'theme_file' => $dir . '/style.css',
+						'theme_file' => $dir . '/main.css',
 						'theme_root' => $theme_root,
 					);
 				}
@@ -830,7 +830,7 @@ function switch_theme( $stylesheet ) {
 }
 
 /**
- * Checks that the current theme has 'index.php' and 'style.css' files.
+ * Checks that the current theme has 'index.php' and 'main.css' files.
  *
  * Does not initially check the default theme, which is the fallback and should always exist.
  * But if it doesn't exist, it'll fall back to the latest core default theme that does exist.
@@ -859,9 +859,9 @@ function validate_current_theme() {
 
 	if ( ! file_exists( get_template_directory() . '/index.php' ) ) {
 		// Invalid.
-	} elseif ( ! file_exists( get_template_directory() . '/style.css' ) ) {
+	} elseif ( ! file_exists( get_template_directory() . '/main.css' ) ) {
 		// Invalid.
-	} elseif ( is_child_theme() && ! file_exists( get_stylesheet_directory() . '/style.css' ) ) {
+	} elseif ( is_child_theme() && ! file_exists( get_stylesheet_directory() . '/main.css' ) ) {
 		// Invalid.
 	} else {
 		// Valid.
@@ -897,7 +897,7 @@ function validate_current_theme() {
  * Validates the theme requirements for WordPress version and PHP version.
  *
  * Uses the information from `Requires at least` and `Requires PHP` headers
- * defined in the theme's `style.css` file.
+ * defined in the theme's `main.css` file.
  *
  * If the headers are not present in the theme's stylesheet file,
  * `readme.txt` is also checked as a fallback.
@@ -1748,7 +1748,7 @@ function _custom_background_cb() {
 	$background = set_url_scheme( get_background_image() );
 
 	// $color is the saved custom color.
-	// A default has to be specified in style.css. It will not be printed here.
+	// A default has to be specified in main.css. It will not be printed here.
 	$color = get_background_color();
 
 	if ( get_theme_support( 'custom-background', 'default-color' ) === $color ) {
@@ -2025,7 +2025,7 @@ function wp_update_custom_css_post( $css, $args = array() ) {
  *
  * The parameter $stylesheet is the name of the stylesheet, relative to
  * the theme root. It also accepts an array of stylesheets.
- * It is optional and defaults to 'editor-style.css'.
+ * It is optional and defaults to 'editor-main.css'.
  *
  * This function automatically adds another stylesheet with -rtl prefix, e.g. editor-style-rtl.css.
  * If that file doesn't exist, it is removed before adding the stylesheet(s) to TinyMCE.
@@ -2040,9 +2040,9 @@ function wp_update_custom_css_post( $css, $args = array() ) {
  * @global array $editor_styles
  *
  * @param array|string $stylesheet Optional. Stylesheet name or array thereof, relative to theme root.
- *                                 Defaults to 'editor-style.css'
+ *                                 Defaults to 'editor-main.css'
  */
-function add_editor_style( $stylesheet = 'editor-style.css' ) {
+function add_editor_style( $stylesheet = 'editor-main.css' ) {
 	global $editor_styles;
 
 	add_theme_support( 'editor-style' );

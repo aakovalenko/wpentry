@@ -1217,7 +1217,7 @@ function update_core( $from, $to ) {
 
 	// 3.5 -> 3.5+ - an empty twentytwelve directory was created upon upgrade to 3.5 for some users, preventing installation of Twenty Twelve.
 	if ( '3.5' === $old_wp_version ) {
-		if ( is_dir( WP_CONTENT_DIR . '/themes/twentytwelve' ) && ! file_exists( WP_CONTENT_DIR . '/themes/twentytwelve/style.css' ) ) {
+		if ( is_dir( WP_CONTENT_DIR . '/themes/twentytwelve' ) && ! file_exists( WP_CONTENT_DIR . '/themes/twentytwelve/main.css' ) ) {
 			$wp_filesystem->delete( $wp_filesystem->wp_themes_dir() . 'twentytwelve/' );
 		}
 	}

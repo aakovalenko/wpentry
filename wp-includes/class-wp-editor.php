@@ -560,7 +560,7 @@ final class _WP_Editors {
 				$mce_css = $settings['content_css'];
 
 				/*
-				 * The `editor-style.css` added by the theme is generally intended for the editor instance on the Edit Post screen.
+				 * The `editor-main.css` added by the theme is generally intended for the editor instance on the Edit Post screen.
 				 * Plugins that use wp_editor() on the front-end can decide whether to add the theme stylesheet
 				 * by using `get_editor_stylesheets()` and the `mce_css` or `tiny_mce_before_init` filters, see below.
 				 */

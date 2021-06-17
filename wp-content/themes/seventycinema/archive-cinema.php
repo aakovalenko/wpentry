@@ -1,21 +1,26 @@
 <?php
 get_header();
-
 ?>
+
 <div class="container">
+
     <?php
     $terms = get_terms( array(
         'taxonomy' => 'cinema_year',
         'hide_empty' => false, ));
     $output = '';
     foreach ($terms as $term){
-        $output .= $term->name . ' | ';
+        //var_dump($term);
+        $link = get_term_link($term->term_id);
+        $output .= "<a href=$link>".$term->name.'</a>'. ' | ';
     }
-    echo $output."<br>";
 
+    echo "<a href='$link'>$output</a>";
+    echo "<br>";
     $args = array(
         'post_type' => 'cinema',
         'orderby' => 'meta_year',
+        'order' => 'DESC',
         'paged' => get_query_var('paged') ?: 1
     );
     $loop = new WP_QUERY( $args);
@@ -29,6 +34,7 @@ get_header();
         the_excerpt();
 
     endwhile;
+
 echo  "<hr>";
     posts_nav_link(); // пагинация - echo тут не надо
 
@@ -37,12 +43,10 @@ echo  "<hr>";
     ?>
 
 </div>
-<hr>
 <?php
-get_sidebar('cinema')
+get_sidebar('cinema');
 ?>
-
 
 <?php
 get_footer()
-    ?>
+?>
