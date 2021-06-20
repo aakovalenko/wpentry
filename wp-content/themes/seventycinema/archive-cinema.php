@@ -3,8 +3,12 @@ get_header();
 ?>
 
 <div class="container">
-
     <?php
+    get_sidebar('cinema');
+    ?>
+<br>
+
+       <?php
     $terms = get_terms( array(
         'taxonomy' => 'cinema_year',
         'hide_empty' => false, ));
@@ -16,26 +20,21 @@ get_header();
     }
 
     echo "<a href='$link'>$output</a>";
-    echo "<br>";
-    $args = array(
-        'post_type' => 'cinema',
-        'orderby' => 'meta_year',
-        'order' => 'DESC',
-        'paged' => get_query_var('paged') ?: 1
-    );
-    $loop = new WP_QUERY( $args);
-    while ($loop->have_posts() ) : $loop->the_post();
-        ?>
-        <br>
-        <a href="<?php the_permalink(); ?>"><?php the_title();?></a>
-        <?php
 
-        //the_content();
-        the_excerpt();
+    echo "<hr>";
 
-    endwhile;
 
-echo  "<hr>";
+
+    if ( have_posts() ) :
+        while ( have_posts() ) : the_post();
+            the_title('<h3>', '</h3>');
+            the_excerpt();
+        endwhile;
+    endif;
+
+
+
+    echo  "<hr>";
     posts_nav_link(); // пагинация - echo тут не надо
 
     wp_reset_query(); // сброс $wp_query
@@ -43,9 +42,7 @@ echo  "<hr>";
     ?>
 
 </div>
-<?php
-get_sidebar('cinema');
-?>
+
 
 <?php
 get_footer()

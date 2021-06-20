@@ -110,8 +110,24 @@ add_action( 'pre_get_posts', 'cinema_pagesize', 1 );
 
 function cinema_pagesize( $query ) {
 
+
     // Выводим 5 записей если это архив типа записи 'movie'
     if( $query->is_post_type_archive('cinema') ){
         $query->set( 'posts_per_page', 5 );
+
+        $getGentre = $_GET['filter']['genre'];
+
+        if ($getGentre != null) {
+            $query->set(    'tax_query' , Array(
+                Array('taxonomy' => 'cinema_genre',
+                    'field' => 'term_id',
+                    'terms' => $getGentre)
+            ));
+        }
+
+
+
+
     }
+
 }
